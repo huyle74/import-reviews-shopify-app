@@ -1,0 +1,40 @@
+{
+  "name": "crawling-app",
+  "version": "1.0.0",
+  "description": "My Express.js application",
+  "main": "main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "npx kill-port 8080 && nodemon server.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.3.1",
+    "@remix-run/express": "^2.16.0",
+    "@shopify/app-bridge": "^3.7.10",
+    "@shopify/shopify-api": "^11.8.1",
+    "@shopify/shopify-app-express": "^5.0.12",
+    "@shopify/shopify-app-session-storage-memory": "^4.0.12",
+    "@shopify/shopify-app-session-storage-postgresql": "^4.0.12",
+    "@shopify/shopify-app-session-storage-prisma": "^6.0.1",
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "http-proxy-middleware": "^3.0.3",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
+    "nodemon": "^3.1.9",
+    "pg": "^8.13.1",
+    "pg-promise": "^11.10.2",
+    "playwright": "^1.49.1",
+    "playwright-extra": "^4.3.6",
+    "playwright-extra-plugin-stealth": "^0.0.1",
+    "toml": "^3.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "kill-port": "^2.0.1"
+  }
+}

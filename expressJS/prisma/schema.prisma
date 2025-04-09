@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ShopifySession {
+  id          String  @id @default(uuid())
+  shop        String  @unique
+  accessToken String
+  createdAt   DateTime @default(now())
+}
