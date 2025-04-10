@@ -6,7 +6,7 @@ async function subscription(accessToken, storeName, plan) {
     console.log(plan);
     const price = plan === "advanced" ? 29.9 : 4.9;
     const planName = plan === "advanced" ? "advanced" : "basic";
-    const gqlQuery = `
+    const gqlQuery = ` 
       mutation AppSubscriptionCreate(
         $name: String!
         $lineItems: [AppSubscriptionLineItemInput!]!
