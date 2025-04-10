@@ -1,2 +1,2 @@
-export const url='http://localhost:8080/api'
-export const api='http://localhost:8080/api'
+export const url='https://import-reviews-shopify-app-257238999717.us-central1.run.app/api'
+export const api='https://import-reviews-shopify-app-257238999717.us-central1.run.app/api'
