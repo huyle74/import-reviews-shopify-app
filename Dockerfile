@@ -25,5 +25,7 @@ RUN cd frontend && npm run build
 # Generate Prisma client
 RUN cd backend && npx prisma generate
 
+WORKDIR /app/backend
+
 EXPOSE 8080
-CMD ["node", "backend/server.js"]
+CMD ["node", "server.js"]
