@@ -2,25 +2,25 @@ FROM node:18-slim
 
 WORKDIR /app
 
-# Copy backend dependencies
+# Backend dependencies
 COPY backend/package*.json ./backend/
 RUN cd backend && npm install
 
-# Copy frontend dependencies
+# Frontend dependencies
 COPY frontend/package*.json ./frontend/
 RUN cd frontend && npm install
 
-# Copy the whole project
+# Copy only app source AFTER deps are installed (better caching)
 COPY . .
 
-# Build frontend (Remix)
+# Build Remix frontend
 RUN cd frontend && npm run build
 
-# Generate Prisma (optional)
+# Install only Chromium to reduce size
+RUN npx playwright install chromium
+
+# Generate Prisma client
 RUN cd backend && npx prisma generate
 
-# Expose port
 EXPOSE 8080
-
-# Start server
 CMD ["node", "backend/server.js"]
