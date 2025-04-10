@@ -37,7 +37,7 @@ const createTables = async () => {
       review_id VARCHAR(255),
       shop_id VARCHAR(255) REFERENCES shops(shop_id) ON DELETE CASCADE, 
       shopify_product_id VARCHAR(255),
-      product_id VARCHAR(255) REFERENCES products(id) ON DELETE CASCADE,   
+      product_id VARCHAR(255),
       platform_id INT REFERENCES platforms(id) ON DELETE CASCADE,
       review_name VARCHAR(255),
       nation VARCHAR(255), 
