@@ -2,6 +2,9 @@ FROM node:18-slim
 
 WORKDIR /app
 
+# Install OS-level dependencies including OpenSSL
+RUN apt-get update -y && apt-get install -y openssl
+
 # Backend dependencies
 COPY backend/package*.json ./backend/
 RUN cd backend && npm install
@@ -10,16 +13,9 @@ RUN cd backend && npm install
 COPY frontend/package*.json ./frontend/
 RUN cd frontend && npm install
 
-# Copy only app source AFTER deps are installed (better caching)
 COPY . .
 
-# Build Remix frontend
 RUN cd frontend && npm run build
-
-# Install only Chromium to reduce size
-RUN npx playwright install chromium
-
-# Generate Prisma client
 RUN cd backend && npx prisma generate
 
 EXPOSE 8080

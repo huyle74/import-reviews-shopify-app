@@ -4,6 +4,7 @@ const corsOption = {
       !origin || // allow server-to-server or mobile apps
       origin.startsWith("chrome-extension://") ||
       origin === "http://localhost:3000" ||
+      origin === "http://localhost:8080" ||
       origin.endsWith(".trycloudflare.com")
     ) {
       callback(null, true);
