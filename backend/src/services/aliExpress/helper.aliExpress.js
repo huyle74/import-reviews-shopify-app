@@ -40,32 +40,32 @@ async function crapingReviews(productId, billing, shop_id, shopify_product_id) {
     let reviews = [];
     const review_id = `${productId}-${Date.now()}-${shop_id}`;
 
-    const queryToAdd =
-      " INSERT INTO reviews (id, review_name, avatar, review_content, rating, nation, date, review_image, shop_id, product_id, platform_id, review_id,shopify_product_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 ,$12, $13) RETURNING *;";
-
     console.log("payment >>", billing);
     const pages = billing === true || billing === "true" ? 20 : 1;
 
-    console.log("page here >> ", pages);
-    for (let i = 1; i <= pages; i++) {
-      const url = await reviewUrl(productId, i);
-      const response = await fetch(url, {
-        method: "get",
-      });
-      const results = await response.json();
-      const reviewData = results?.data?.evaViewList;
-      // BREAK IF NO MORE PAGINATION
-      if (!reviewData.length) break;
-      for (const dt of reviewData) {
-        const id = Math.floor(Math.random() * dt.evaluationId);
-        const review_name = dt.buyerName || "";
-        const review_content = dt.buyerTranslationFeedback || "";
-        const rating = Number(Math.floor(Number(dt.buyerEval) / 20));
-        const avatar = dt.buyerHeadPortrait || null;
-        const review_image = dt.images || [];
-        const date = dt.evalDate;
-        const nation = new Intl.DisplayNames(["en"], { type: "region" }).of(dt.buyerCountry);
-        await query(queryToAdd, [
+    const urls = await Promise.all(Array.from({ length: pages }, (_, i) => reviewUrl(productId, i + 1)));
+    const responses = await Promise.all(
+      urls.map((url) => {
+        return fetch(url).then((res) => {
+          return res.json();
+        });
+      })
+    );
+
+    for (const result of responses) {
+      const reviewData = result?.data?.evaViewList || [];
+      for (const review of reviewData) {
+        if (review?.buyerEval === 0) continue;
+        const id = Math.floor(Math.random() * review?.evaluationId);
+        const review_name = review?.buyerName || "";
+        const review_content = review?.buyerTranslationFeedback || "";
+        const rating = Number(Math.floor(Number(review?.buyerEval) / 20));
+        const avatar = review?.buyerHeadPortrait || null;
+        const review_image = review.images || [];
+        const date = review.evalDate;
+        const nation = new Intl.DisplayNames(["en"], { type: "region" }).of(review?.buyerCountry);
+
+        reviews.push([
           id,
           review_name,
           avatar,
@@ -80,19 +80,39 @@ async function crapingReviews(productId, billing, shop_id, shopify_product_id) {
           review_id,
           shopify_product_id,
         ]);
-        reviews.push({
-          id,
-          review_name,
-          review_content,
-          rating,
-          avatar,
-          review_image,
-          date,
-          nation,
-        });
       }
     }
-    return { reviews, review_id };
+    console.log("total pages >> ", pages);
+    if (reviews.length > 0) {
+      const values = reviews
+        .map(
+          (_, i) =>
+            `($${i * 13 + 1}, $${i * 13 + 2}, $${i * 13 + 3}, $${i * 13 + 4}, $${i * 13 + 5}, $${i * 13 + 6}, $${i * 13 + 7}, $${i * 13 + 8}, $${i * 13 + 9}, $${i * 13 + 10}, $${
+              i * 13 + 11
+            }, $${i * 13 + 12}, $${i * 13 + 13})`
+        )
+        .join(", ");
+      const flatValues = reviews.flat();
+
+      const queryToAdd = `
+        INSERT INTO reviews 
+        (id, review_name, avatar, review_content, rating, nation, date, review_image, shop_id, product_id, platform_id, review_id, shopify_product_id)
+        VALUES ${values};
+      `;
+      await query(queryToAdd, flatValues);
+    }
+
+    return {
+      reviews: reviews.map(([id, name, , content, rating, , date, images]) => ({
+        id,
+        review_name: name,
+        review_content: content,
+        rating,
+        date,
+        review_image: images,
+      })),
+      review_id,
+    };
   } catch (error) {
     console.error("Get reviews on Ali stuck here >> ", error);
   }

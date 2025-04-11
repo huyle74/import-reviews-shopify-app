@@ -27,7 +27,7 @@ async function subscription(accessToken, storeName, plan) {
 
     const variables = {
       name: planName,
-      returnUrl: `https://admin.shopify.com/store/${storeName}/apps/remix-frontend-review-app/`,
+      returnUrl: `https://admin.shopify.com/store/${storeName}/apps/review-import-display/app`,
       lineItems: [
         {
           plan: {
