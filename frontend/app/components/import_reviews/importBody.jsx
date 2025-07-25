@@ -95,6 +95,7 @@ export default function ImportBody({
                   width: "10%",
                   justifyContent: "center",
                   marginRight: "10px",
+                  overflow: "hidden",
                 }}
               >
                 <img
@@ -105,13 +106,16 @@ export default function ImportBody({
                   }
                   alt="product Image"
                   style={{
+                    position: "relative",
                     objectFit: "cover",
-                    height: "40px",
+                    height: "3rem",
                     borderRadius: "4px",
                   }}
                 />
               </div>
-              <Text>{title}</Text>
+              <div style={{ overflow: "hidden" }}>
+                <Text>{title.slice(0, 20)}</Text>
+              </div>
             </div>
           </IndexTable.Cell>
           <IndexTable.Cell>

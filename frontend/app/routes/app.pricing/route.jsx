@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import { useLoaderData } from "@remix-run/react";
 import { Page } from "@shopify/polaris";
 import { authenticate } from "../../shopify.server";

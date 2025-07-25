@@ -5,13 +5,13 @@ import { useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 import ImportBody from "../components/import_reviews/importBody";
 import Skeleton from "../components/manage_reviews/skeleton";
-import { url } from "../utils/config";
 import ViewReviews from "../components/import_reviews/viewNewImported";
 
 export const loader = async ({ request }) => {
   console.log("------/app/importReview loaded");
   const { billing, session } = await authenticate.admin(request);
   const shop_id = session.id.match(/offline_(.*?)\.myshopify\.com/)?.[1];
+  console.log(session, shop_id);
   const { hasActivePayment, appSubscriptions } = await billing.check();
   console.log(appSubscriptions);
 
@@ -19,12 +19,13 @@ export const loader = async ({ request }) => {
     bill: hasActivePayment,
     shop_id,
     plan: appSubscriptions[0]?.name || null,
+    url: process.env.BACKEND_URL,
   };
 };
 
 export default function AdditionalPage() {
   const app = useAppBridge();
-  const { bill, shop_id, plan } = useLoaderData();
+  const { bill, shop_id, plan, url } = useLoaderData();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [viewReviewsAfterImported, setViewReviewsAfterImported] =
@@ -36,7 +37,7 @@ export default function AdditionalPage() {
       try {
         setLoading(true);
         const accessToken = await app.idToken();
-        const response = await fetch(`${url}/shopify/allProducts`, {
+        const response = await fetch(`${url}/api/shopify/allProducts`, {
           method: "GET",
           headers: {
             authorization: `Bearer ${accessToken}`,
@@ -44,7 +45,7 @@ export default function AdditionalPage() {
         });
         const products = await response.json();
         if (products) {
-          console.log(products.finalProductInfo);
+          console.log("GEt product here: ", products.finalProductInfo);
           setData(products);
           setLoading(false);
         }

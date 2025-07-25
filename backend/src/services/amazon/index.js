@@ -10,14 +10,14 @@ const domain = process.env.AMAZON || "https://www.amazon.com/";
 
 async function AmazonCrawler(url, shop_id, billing, shopify_product_id) {
   const start = performance.now();
-  console.log("-----------------------------------\nGET AMAZON PAGE TRIGGER*****");
+  console.log("-------------\nGET AMAZON PAGE TRIGGER*****", shop_id);
   let allReviews = [];
   try {
     const productCode = extractAmazonUrl(url);
     const headerCookies = await query("SELECT headers FROM shops WHERE shop_id=$1", [shop_id]);
     const validHeader = await setHeaders(headerCookies.rows[0].headers);
     const queryToAdd =
-      " INSERT INTO reviews (id, review_name, avatar, review_content, rating, nation, date, review_image, shop_id, product_id, platform_id, review_id, shopify_product_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 ,$12, $13) RETURNING *;";
+      "INSERT INTO reviews (id, review_name, avatar, review_content, rating, nation, date, review_image, shop_id, product_id, platform_id, review_id, shopify_product_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 ,$12, $13) RETURNING *;";
     const review_id = `${productCode}-${Date.now()}-${shop_id}`;
     const pages = billing === true || billing === "true" ? 10 : 1;
     console.log(billing, pages);
@@ -56,9 +56,10 @@ async function AmazonCrawler(url, shop_id, billing, shopify_product_id) {
     console.log(`DONE!!! >> Total: ${reviews.length} reviews were craped`);
     const end = performance.now();
     console.log("Total Time execution >>> ", ((end - start) / 1000).toFixed(2));
-    return { reviews, review_id };
+    return { reviews, review_id, success: true, statusCode: 200 };
   } catch (error) {
     console.log("Bug HERE >>> ", error);
+    return { reviews: [], review_id: null, success: false };
   }
 }
 

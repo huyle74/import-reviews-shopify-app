@@ -15,8 +15,8 @@ async function verifyToken(req, res, next) {
 
     const url = new URL(`https://${shop}.myshopify.com/admin/oauth/access_token`);
     const body = {
-      client_id: process.env.SHOPIFY_KEY,
-      client_secret: process.env.SHOPIFY_SECRET_KEY,
+      client_id: process.env.SHOPIFY_API_KEY,
+      client_secret: process.env.SHOPIFY_API_SECRET,
       grant_type: "urn:ietf:params:oauth:grant-type:token-exchange",
       subject_token: token,
       subject_token_type: "urn:ietf:params:oauth:token-type:id_token",

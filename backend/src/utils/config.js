@@ -5,8 +5,7 @@ const corsOption = {
       origin.startsWith("chrome-extension://") ||
       origin === "http://localhost:3000" ||
       origin === "http://localhost:8080" ||
-      origin.endsWith(".trycloudflare.com") ||
-      origin === "https://import-reviews-shopify-app-257238999717.us-central1.run.app"
+      origin.endsWith(".trycloudflare.com")
     ) {
       callback(null, true);
     } else {

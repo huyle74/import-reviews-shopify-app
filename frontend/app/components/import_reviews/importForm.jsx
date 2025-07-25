@@ -33,6 +33,7 @@ export default function ImportForm({
     importedSuccess(imported);
     setPopup(false);
     setUrl("");
+    console.log(process.env.BACKEND_URL);
   };
 
   return (

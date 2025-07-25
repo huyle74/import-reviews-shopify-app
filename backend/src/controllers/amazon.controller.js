@@ -3,6 +3,7 @@ const AmazonCrawler = require("../services/amazon/index");
 async function amazonController(req, res) {
   try {
     const { url, shop_id, billing, shopify_product_id } = req.query;
+    console.log(shop_id, billing, shopify_product_id);
     const { reviews, review_id } = await AmazonCrawler(url, shop_id, billing, shopify_product_id);
     if (reviews.length) {
       res.json({ reviews, review_id, success: true });

@@ -15,6 +15,10 @@ import {
 } from "../../utils/checkUrl";
 import { api } from "../../utils/config";
 
+export const loader = async() =>{
+  console.log(process.env.BACKEND_URL);
+}
+
 export default function PopupImportForm({
   data,
   onClose,
