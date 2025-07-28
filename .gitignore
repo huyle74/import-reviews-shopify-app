@@ -1,2 +1,10 @@
 run_backend.bat
 run_frontend.bat
+
+backend/node_modules
+backend/.env
+frontend/node_modules
+frontend/build
+frontend/.env
+frontend/shopify.app.toml
+
