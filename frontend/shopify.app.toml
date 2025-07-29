@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "060ad597ef97d7bda7acdb03e9f97bd5"
-application_url = "https://js-nn-jimmy-thomson.trycloudflare.com"
+application_url = "https://calendar-button-realize-tales.trycloudflare.com"
 embedded = true
 name = "Reviews: Import & Display"
 handle = "reviews-import-and-display"
@@ -27,7 +27,7 @@ api_version = "2025-01"
 scopes = "write_products"
 
 [auth]
-redirect_urls = ["https://js-nn-jimmy-thomson.trycloudflare.com/auth/callback", "https://js-nn-jimmy-thomson.trycloudflare.com/auth/shopify/callback", "https://js-nn-jimmy-thomson.trycloudflare.com/api/auth/callback"]
+redirect_urls = ["https://calendar-button-realize-tales.trycloudflare.com/auth/callback", "https://calendar-button-realize-tales.trycloudflare.com/auth/shopify/callback", "https://calendar-button-realize-tales.trycloudflare.com/api/auth/callback"]
 
 [pos]
 embedded = true

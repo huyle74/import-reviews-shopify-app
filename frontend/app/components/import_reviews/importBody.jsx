@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { IndexTable, Card, Text, Icon } from "@shopify/polaris";
-import { StarIcon, StarFilledIcon } from "@shopify/polaris-icons";
 import TableHeader from "./tableHeader";
+import { StarIcon, StarFilledIcon } from "@shopify/polaris-icons";
 import ImportForm from "./importForm";
 import LoadingSpinner from "../common/loadingSpinner";
 import ViewButton from "./viewButton";

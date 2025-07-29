@@ -4,6 +4,7 @@ const aliExpressController = async (req, res) => {
   try {
     const { url, billing, shop_id, shopify_product_id } = req.query;
     const { reviews, review_id } = await CrawlFromAliExpress(url, billing, shop_id, shopify_product_id);
+    // console.log(reviews, review_id);
     if (reviews.length) {
       res.json({ reviews, review_id, success: true });
     } else {

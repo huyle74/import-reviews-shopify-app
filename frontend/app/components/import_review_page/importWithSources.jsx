@@ -1,6 +1,6 @@
 import { Box, Card, Text } from "@shopify/polaris";
-import { amazonIcon, aliExpressIcon, temuLogo } from "../../utils/icon";
 import ImportSources from "./importSources";
+import { amazonIcon, aliExpressIcon, temuLogo } from "../../utils/icon";
 
 export default function ImportWithSources({
   amazonClick,

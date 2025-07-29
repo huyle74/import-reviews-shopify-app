@@ -7,9 +7,9 @@ import { authenticate } from "../shopify.server";
 import { checkUrlAmazon, checkUrlAliExpress } from "../utils/checkUrl";
 import { amazonLogo, aliExpressLogo } from "../utils/icon";
 import { url } from "../utils/config";
-import ImportReviewBody from "../components/import/importReviewBody";
-import ImportWithSources from "../components/import/importWithSources";
-import SourcePlatform from "../components/import/platform.source";
+import ImportReviewBody from "../components/import_review_page/importReviewBody";
+import ImportWithSources from "../components/import_review_page/importWithSources";
+import SourcePlatform from "../components/import_review_page/platform.source";
 
 export const loader = async ({ request }) => {
   console.log("/app/import_review_product >>>>>");

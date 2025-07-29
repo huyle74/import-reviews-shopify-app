@@ -3,8 +3,8 @@ import { Page } from "@shopify/polaris";
 import { useLoaderData } from "@remix-run/react";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
-import ImportBody from "../components/import/importBody";
-import ViewReviews from "../components/import/viewNewImported";
+import ImportBody from "../components/import_reviews/importBody";
+import ViewReviews from "../components/import_reviews/viewNewImported";
 import Skeleton from "../components/common/skeleton";
 
 export const loader = async ({ request }) => {
@@ -63,6 +63,7 @@ export default function AdditionalPage() {
       (async () => {
         try {
           const response = await fetch(
+            // `${url}/updateDataAfterImported?shopify_product_id=${viewReviewsAfterImported.productId}`,
             `${url}/importReviewPage/updateDataAfterImported?shopify_product_id=${viewReviewsAfterImported.productId}`,
             {
               method: "post",
