@@ -1,11 +1,10 @@
 import { useCallback } from "react";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useNavigate } from "@remix-run/react";
 import { Page } from "@shopify/polaris";
 import { authenticate } from "../../shopify.server";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { url } from "../../utils/config";
 import AllPricingPlan from "../../components/pricing/priceSection";
-import { useNavigate } from "@remix-run/react";
 
 export const loader = async ({ request }) => {
   console.log("--PRICING PAGE--");

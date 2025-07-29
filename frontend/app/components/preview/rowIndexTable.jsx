@@ -1,6 +1,6 @@
 import { IndexTable, Box, Text, Avatar, Button } from "@shopify/polaris";
 import { DeleteIcon } from "@shopify/polaris-icons";
-import RatingStar from "./ratingStar";
+import RatingStar from "../common/ratingStar";
 import ReviewContent from "./reviewContent";
 import ImagesReview from "./imageReview";
 

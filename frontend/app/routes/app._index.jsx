@@ -3,9 +3,9 @@ import { Page } from "@shopify/polaris";
 import { useLoaderData } from "@remix-run/react";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
-import ImportBody from "../components/import_reviews/importBody";
-import Skeleton from "../components/manage_reviews/skeleton";
-import ViewReviews from "../components/import_reviews/viewNewImported";
+import ImportBody from "../components/import/importBody";
+import ViewReviews from "../components/import/viewNewImported";
+import Skeleton from "../components/common/skeleton";
 
 export const loader = async ({ request }) => {
   console.log("------/app/importReview loaded");

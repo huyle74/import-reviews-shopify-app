@@ -13,7 +13,7 @@ import AnnouncePlan from "../../components/preview/announcePlan";
 import ModalPreview from "../../components/preview/modalPreview";
 import RowIndexTable from "../../components/preview/rowIndexTable";
 import ModalWarning from "../../components/preview/warningModal";
-import LoadingSpinner from "../../components/preview/loadingSpinner";
+import LoadingSpinner from "../../components/common/loadingSpinner";
 import FilterFunction from "../../components/preview/filter";
 import exportCSV from "../../components/preview/exportCSVFile";
 import { url } from "../../utils/config";

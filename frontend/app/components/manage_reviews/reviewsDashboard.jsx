@@ -17,15 +17,15 @@ import {
   exportCSV,
   nationToFlag,
 } from "./helper.function";
+import { url } from "../../utils/config";
 import FilterReviews from "./filterReviews";
-import RatingStar from "../preview/ratingStar";
 import ReviewContent from "./reviewContent";
 import ReviewsPhotos from "./reviewsPhotos";
 import DisplayPhotos from "./displayPhotos";
-import { url } from "../../utils/config";
-import ModalManageReviews from "./modal";
-import LoadingSpinner from "../preview/loadingSpinner";
-import Skeleton from "./skeleton";
+import ModalManageReviews from "../common/modal";
+import RatingStar from "../common/ratingStar";
+import LoadingSpinner from "../common/loadingSpinner";
+import Skeleton from "../common/skeleton";
 
 export default function ReviewDashboard({
   data,

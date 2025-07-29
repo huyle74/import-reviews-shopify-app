@@ -1,9 +1,9 @@
 import { Link, Outlet, useLoaderData, useRouteError } from "@remix-run/react";
 import { boundary } from "@shopify/shopify-app-remix/server";
-import { PolarisProvider } from "../components/PolarisProvider";
 import { NavMenu } from "@shopify/app-bridge-react";
 import polarisStyles from "@shopify/polaris/build/esm/styles.css?url";
 import { authenticate } from "../shopify.server";
+import { PolarisProvider } from "../providers/PolarisProvider";
 
 export const links = () => [{ rel: "stylesheet", href: polarisStyles }];
 

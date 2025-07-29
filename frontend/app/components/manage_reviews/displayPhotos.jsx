@@ -1,6 +1,5 @@
 import { Button } from "@shopify/polaris";
-import { XIcon } from "@shopify/polaris-icons";
-import { DeleteIcon } from "@shopify/polaris-icons";
+import { XIcon, DeleteIcon } from "@shopify/polaris-icons";
 
 export default function DisplayPhotos({
   photos,

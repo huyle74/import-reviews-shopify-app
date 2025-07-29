@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { AppProvider } from "@shopify/shopify-app-remix/react";
-import { useRouteError, useLoaderData } from "@remix-run/react";
+import { useRouteError, useLoaderData, useSearchParams } from "@remix-run/react";
 import { boundary } from "@shopify/shopify-app-remix/server";
-import { useSearchParams } from "@remix-run/react";
 import { Page, Collapsible } from "@shopify/polaris";
 import { authenticate } from "../shopify.server";
-import ImportReviewBody from "../components/import_review_page/importReviewBody";
-import ImportWithSources from "../components/import_review_page/importWithSources";
-import SourcePlatform from "../components/import_review_page/platform.source";
 import { checkUrlAmazon, checkUrlAliExpress } from "../utils/checkUrl";
 import { amazonLogo, aliExpressLogo } from "../utils/icon";
 import { url } from "../utils/config";
+import ImportReviewBody from "../components/import/importReviewBody";
+import ImportWithSources from "../components/import/importWithSources";
+import SourcePlatform from "../components/import/platform.source";
 
 export const loader = async ({ request }) => {
   console.log("/app/import_review_product >>>>>");
