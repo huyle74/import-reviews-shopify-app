@@ -63,8 +63,7 @@ export default function AdditionalPage() {
       (async () => {
         try {
           const response = await fetch(
-            // `${url}/updateDataAfterImported?shopify_product_id=${viewReviewsAfterImported.productId}`,
-            `${url}/importReviewPage/updateDataAfterImported?shopify_product_id=${viewReviewsAfterImported.productId}`,
+            `${url}/api/importReviewPage/updateDataAfterImported?shopify_product_id=${viewReviewsAfterImported.productId}`,
             {
               method: "post",
             },
@@ -75,7 +74,8 @@ export default function AdditionalPage() {
           }
           console.log(data);
         } catch (error) {
-          console.log(error);
+            console.log("error from here");
+            console.log(error);
         } finally {
           setLoading(false);
         }
@@ -88,7 +88,7 @@ export default function AdditionalPage() {
       setLoading(true);
       const accessToken = await app.idToken();
       const response = await fetch(
-        `${url}/shopify/pagination?move=${move}&cursor=${cursor}`,
+        `${url}/api/shopify/pagination?move=${move}&cursor=${cursor}`,
         {
           method: "POST",
           headers: { authorization: `Bearer ${accessToken}` },
@@ -109,7 +109,7 @@ export default function AdditionalPage() {
       setLoading(true);
       const accessToken = await app.idToken();
       console.log(order);
-      const response = await fetch(`${url}/shopify/sort?sort=${order}`, {
+      const response = await fetch(`${url}/api/shopify/sort?sort=${order}`, {
         method: "POST",
         headers: { authorization: `Bearer ${accessToken}` },
       });
@@ -130,7 +130,7 @@ export default function AdditionalPage() {
       setLoading(true);
       const accessToken = await app.idToken();
       const response = await fetch(
-        `${url}/shopify/searchTitle?searchTerm=${value}`,
+        `${url}/api/shopify/searchTitle?searchTerm=${value}`,
         {
           method: "POST",
           headers: { authorization: `Bearer ${accessToken}` },
@@ -146,7 +146,7 @@ export default function AdditionalPage() {
     }
   };
   const subtitle = (
-    <div>
+    <span>
       You are on{" "}
       {bill === false ? (
         <span style={{ fontWeight: 700 }}>free</span>
@@ -161,7 +161,7 @@ export default function AdditionalPage() {
         </span>
       )}{" "}
       plan
-    </div>
+    </span>
   );
 
   return (

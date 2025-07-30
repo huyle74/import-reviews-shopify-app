@@ -11,15 +11,36 @@ export default function ViewButton({
 }) {
   const [loading, setLoading] = useState(false);
   return (
+    // <Link
+    //   onClick={() => {
+    //     if (totalReviews !== 0) {
+    //       setLoading(true);
+    //     }
+    //   }}
+    // >
+    //   <Button
+    //     url={totalReviews ? `/app/manageReview?product_id=${id}` : ""}
+    //     variant="tertiary"
+    //     icon={ViewIcon}
+    //     onClick={onClick}
+    //     loading={loading}
+    //     disabled={disabled}
+    //   >
+    //     View
+    //   </Button>
+    // </Link>
+
     <Link
-      onClick={() => {
+      to= {totalReviews ? `/app/manageReview?product_id=${id}` : ""}
+      onClick={(e) => {
         if (totalReviews !== 0) {
           setLoading(true);
+        }else{
+          e.preventDefault();
         }
       }}
     >
       <Button
-        url={totalReviews ? `/app/manageReview?product_id=${id}` : ""}
         variant="tertiary"
         icon={ViewIcon}
         onClick={onClick}
