@@ -354,7 +354,7 @@ export default function ReviewDashboard({
       <div
         style={{
           height: `${displayValid ? "99vh" : "100%"}`,
-          overflowY: `${displayValid ? "hidden" : ""}`,
+          overflowY: `${displayValid ? "hidden" : "auto"}`,
           position: "relative",
         }}
       >
